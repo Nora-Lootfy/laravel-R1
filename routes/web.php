@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ExampleController;
+use App\Http\Controllers\CarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,51 +19,73 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('about', function () {
-    return 'About page';
+//Route::get('about', function () {
+//    return 'About page';
+//});
+//
+//Route::get('contact-us', function () {
+//    return 'Contact US page';
+//});
+//
+//Route::prefix('support')->group(function () {
+//   Route::get('/', function () {
+//       return 'Support Home page';
+//   });
+//
+//   Route::get('chat', function () {
+//      return 'Chat page';
+//   });
+//
+//    Route::get('call', function () {
+//        return 'Call page';
+//    });
+//
+//    Route::get('ticket', function () {
+//        return 'Ticket page';
+//    });
+//});
+//
+//Route::prefix('training')->group(function () {
+//    Route::get('/', function () {
+//        return 'Training Home page';
+//    });
+//
+//    Route::get('ict', function () {
+//        return 'ICT page';
+//    });
+//
+//    Route::get('hr', function () {
+//        return 'HR page';
+//    });
+//
+//    Route::get('marketing', function () {
+//        return 'Marketing page';
+//    });
+//
+//    Route::get('logistics', function () {
+//        return 'Logistics page';
+//    });
+//});
+
+//Route::fallback(function () {
+//   return redirect('/');
+//});
+
+
+Route::get('cv', function () {
+   return view('cv');
 });
 
-Route::get('contact-us', function () {
-    return 'Contact US page';
+Route::get('login', function () {
+    return view('login');
 });
 
-Route::prefix('support')->group(function () {
-   Route::get('/', function () {
-       return 'Support Home page';
-   });
+Route::post('receive', function () {
+    return "data received";
+})->name('receive');
 
-   Route::get('chat', function () {
-      return 'Chat page';
-   });
+Route::get('test', [ExampleController::class, 'test']);
 
-    Route::get('call', function () {
-        return 'Call page';
-    });
-
-    Route::get('ticket', function () {
-        return 'Ticket page';
-    });
-});
-
-Route::prefix('training')->group(function () {
-    Route::get('/', function () {
-        return 'Training Home page';
-    });
-
-    Route::get('ict', function () {
-        return 'ICT page';
-    });
-
-    Route::get('hr', function () {
-        return 'HR page';
-    });
-
-    Route::get('marketing', function () {
-        return 'Marketing page';
-    });
-
-    Route::get('logistics', function () {
-        return 'Logistics page';
-    });
-});
+Route::get('add-car', [CarController::class, 'add_car']);
+Route::post('car-added', [CarController::class, 'added'])->name('car-added');
 
