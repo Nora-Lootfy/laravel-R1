@@ -12,7 +12,7 @@ class CarController extends Controller
 
     public function added(Request $request) {
         $data = $request->all();
-        $data["published"] = isset($data["published"])? "Yes": "No";
+        $data['published'] = isset($data['published'])? 'Yes': 'No';
 
         return view('carAdded', $data);
     }

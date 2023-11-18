@@ -89,3 +89,4 @@ Route::get('test', [ExampleController::class, 'test']);
 Route::get('add-car', [CarController::class, 'add_car']);
 Route::post('car-added', [CarController::class, 'added'])->name('car-added');
 
+Route::get('car-added', fn() => redirect('add-car'));
