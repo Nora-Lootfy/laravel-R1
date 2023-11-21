@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\CarsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,7 +87,11 @@ Route::post('receive', function () {
 
 Route::get('test', [ExampleController::class, 'test']);
 
-Route::get('add-car', [CarController::class, 'add_car']);
-Route::post('car-added', [CarController::class, 'added'])->name('car-added');
+//Route::get('add-car', [CarController::class, 'add_car']);
+//Route::post('car-added', [CarController::class, 'added'])->name('car-added');
+//
+//Route::get('car-added', fn() => redirect('add-car'));
 
-Route::get('car-added', fn() => redirect('add-car'));
+Route::get('add-car', [CarsController::class, 'create']);
+Route::post('car-added', [CarsController::class, 'store'])->name('car-added');
+
