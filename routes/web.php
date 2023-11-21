@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\CarsController;
+use App\Http\Controllers\NewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,3 +96,5 @@ Route::get('test', [ExampleController::class, 'test']);
 Route::get('add-car', [CarsController::class, 'create']);
 Route::post('car-added', [CarsController::class, 'store'])->name('car-added');
 
+Route::get('create-news', [NewsController::class, 'create']);
+Route::post('store-news', [NewsController::class, 'store'])->name('store-news');
