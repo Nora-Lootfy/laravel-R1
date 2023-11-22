@@ -96,6 +96,8 @@ Route::get('test', [ExampleController::class, 'test']);
 Route::get('add-car', [CarsController::class, 'create']);
 Route::post('car-added', [CarsController::class, 'store'])->name('car-added');
 Route::get('car-index', [CarsController::class, 'index']);
+Route::get('edit-car/{id}', [CarsController::class, 'edit']);
+Route::put('update-car/{id}', [CarsController::class, 'update'])->name('update-car');
 
 Route::get('create-news', [NewsController::class, 'create']);
 Route::post('store-news', [NewsController::class, 'store'])->name('store-news');
