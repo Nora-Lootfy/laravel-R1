@@ -99,6 +99,11 @@ Route::get('car-index', [CarsController::class, 'index']);
 Route::get('edit-car/{id}', [CarsController::class, 'edit']);
 Route::put('update-car/{id}', [CarsController::class, 'update'])->name('update-car');
 
+
+Route::get('news-index', [NewsController::class, 'index']);
 Route::get('create-news', [NewsController::class, 'create']);
 Route::post('store-news', [NewsController::class, 'store'])->name('store-news');
+Route::get('edit-news/{id}', [NewsController::class, 'edit']);
+Route::put('update-news/{id}', [NewsController::class, 'update'])->name('update-news');
+
 
