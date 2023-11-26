@@ -12,7 +12,7 @@
 
 <div class="container">
     <h2>Edit Car</h2>
-    <form action="{{route('update-car', $car->id)}}" method="post">
+    <form action="{{route('update-car', $car->id)}}" method="post" id="form">
         @csrf
         @method('put')
 
@@ -31,7 +31,7 @@
         <div class="checkbox">
             <label><input type="checkbox" name="published"  @checked($car->published)> Published</label>
         </div>
-        <button type="submit" class="btn btn-default">Update</button>
+        <button type="submit" class="btn btn-default" >Update</button>
     </form>
 </div>
 
