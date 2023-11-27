@@ -53,7 +53,9 @@ class CarsController extends Controller
      */
     public function show(string $id)
     {
+        $car = Car::findORFail($id);
 
+        return view('showCar', compact('car'));
     }
 
     /**
@@ -76,7 +78,6 @@ class CarsController extends Controller
         $data['published'] = isset($data['published'])? true:false;
 
         Car::where('id', $id)->update($data);
-//        Car::where('id', $id)->update($request->only($this->columns));
 
         return redirect('car-index');
 

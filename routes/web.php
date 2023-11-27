@@ -98,6 +98,7 @@ Route::post('car-added', [CarsController::class, 'store'])->name('car-added');
 Route::get('car-index', [CarsController::class, 'index']);
 Route::get('edit-car/{id}', [CarsController::class, 'edit']);
 Route::put('update-car/{id}', [CarsController::class, 'update'])->name('update-car');
+Route::get('show-car/{id}', [CarsController::class, 'show']);
 Route::get('delete-car/{id}', [CarsController::class, 'destroy']);
 
 
@@ -106,5 +107,6 @@ Route::get('create-news', [NewsController::class, 'create']);
 Route::post('store-news', [NewsController::class, 'store'])->name('store-news');
 Route::get('edit-news/{id}', [NewsController::class, 'edit']);
 Route::put('update-news/{id}', [NewsController::class, 'update'])->name('update-news');
-
+Route::get('show-news/{id}', [NewsController::class, 'show']);
+Route::get('delete-news/{id}', [NewsController::class, 'destroy']);
 

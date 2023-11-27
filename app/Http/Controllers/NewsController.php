@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 use App\Models\News;
 class NewsController extends Controller
 {
+    private $columns = [
+        'newsTitle',
+        'newsContent',
+        'newsPublished',
+        'newsAuthor'
+    ];
     /**
      * Display a listing of the resource.
      */
@@ -37,7 +43,7 @@ class NewsController extends Controller
 
         $news->save();
 
-        return 'News is added successfully';
+        return redirect('news-index');
     }
 
     /**
@@ -45,7 +51,9 @@ class NewsController extends Controller
      */
     public function show(string $id)
     {
+        $news = News::findORFail($id);
 
+        return view('showNews', compact('news'));
     }
 
     /**
@@ -62,7 +70,12 @@ class NewsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->only($this->columns);
+        $data['newsPublished'] = isset($data['newsPublished'])? true:false;
+
+        News::where('id', $id)->update($data);
+
+        return redirect('news-index');
     }
 
     /**
@@ -70,6 +83,7 @@ class NewsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        News::where('id', $id)->delete();
+        return redirect('news-index');
     }
 }

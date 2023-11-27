@@ -20,7 +20,9 @@
             <th>Content</th>
             <th>Published</th>
             <th>Author</th>
+            <th>Show</th>
             <th>Edit</th>
+            <th>Delete</th>
         </tr>
         </thead>
         <tbody>
@@ -36,12 +38,15 @@
                     @endif
                 </td>
                 <td>{{$article->newsAuthor}}</td>
+                <td><a href="show-news/{{$article->id}}">Show</a></td>
                 <td><a href="edit-news/{{$article->id}}">Edit</a></td>
+                <td><a href="delete-news/{{$article->id}}">Delete</a></td>
             </tr>
         @endforeach
 
         </tbody>
     </table>
+    <a href="create-news" class="btn btn-primary">Adding new News!!</a>
 </div>
 
 </body>

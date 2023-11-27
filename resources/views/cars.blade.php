@@ -20,6 +20,7 @@
             <th>Description</th>
             <th>Published</th>
             <th>Price</th>
+            <th>Show</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -37,6 +38,7 @@
                     @endif
                 </td>
                 <td>{{$car->price}}</td>
+                <td><a href="show-car/{{$car->id}}">Show</a></td>
                 <td><a href="edit-car/{{$car->id}}">Edit</a></td>
                 <td><a href="delete-car/{{$car->id}}">Delete</a></td>
         </tr>
@@ -44,6 +46,7 @@
 
         </tbody>
     </table>
+    <a href="add-car" class="btn btn-primary">Adding new Car!!</a>
 </div>
 
 </body>
