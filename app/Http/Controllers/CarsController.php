@@ -105,7 +105,7 @@ class CarsController extends Controller
     public function getTrashed()
     {
         $trashed_cars = Car::onlyTrashed()->get();
-        return view('trashed', compact('trashed_cars'));
+        return view('trashedCars', compact('trashed_cars'));
     }
 
     public function restore(string $id) :RedirectResponse

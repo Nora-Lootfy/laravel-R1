@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
 use Illuminate\Http\Request;
 use App\Models\News;
+use Illuminate\Http\RedirectResponse;
+
 class NewsController extends Controller
 {
     private $columns = [
@@ -32,16 +35,27 @@ class NewsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request) :RedirectResponse
     {
-        $news = new News();
+//        $news = new News();
+//
+//        $news->newsTitle = $request->newsTitle;
+//        $news->newsContent = $request->newsContent;
+//        $news->newsPublished = (isset($request->newsPublished))? true : false;
+//        $news->newsAuthor = $request->newsAuthor;
+//
+//        $news->save();
 
-        $news->newsTitle = $request->newsTitle;
-        $news->newsContent = $request->newsContent;
-        $news->newsPublished = (isset($request->newsPublished))? true : false;
-        $news->newsAuthor = $request->newsAuthor;
+        $request->validate([
+            'newsTitle'     => 'required|string|max:100',
+            'newsContent'   => 'required|string|max:500',
+            'newsAuthor'    => 'required|string|max:50'
+        ]);
 
-        $news->save();
+        $data = $request->only($this->columns);
+        $data['newsPublished'] = isset($data['newsPublished']);
+
+        News::create($data);
 
         return redirect('news-index');
     }
@@ -68,7 +82,7 @@ class NewsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id) :RedirectResponse
     {
         $data = $request->only($this->columns);
         $data['newsPublished'] = isset($data['newsPublished'])? true:false;
@@ -81,9 +95,27 @@ class NewsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id) :RedirectResponse
     {
         News::where('id', $id)->delete();
+        return redirect('news-index');
+    }
+
+    public function getTrashed()
+    {
+        $trashed_news = News::onlyTrashed()->get();
+        return view('trashedNews', compact('trashed_news'));
+    }
+
+    public function restore(string $id) :RedirectResponse
+    {
+        News::where('id', $id)->restore();
+        return redirect('news-index');
+    }
+
+    public function destroyPermanently(string $id) :RedirectResponse
+    {
+        News::where('id', $id)->Forcedelete();
         return redirect('news-index');
     }
 }

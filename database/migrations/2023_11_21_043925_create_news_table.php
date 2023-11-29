@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text(column: 'newsContent');
             $table->boolean(column: 'newsPublished');
             $table->string(column: 'newsAuthor', length: 50);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

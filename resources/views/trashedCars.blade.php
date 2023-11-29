@@ -11,43 +11,40 @@
 <body>
 
 <div class="container">
-    <h2>All News</h2>
+    <h2>Trashed cars</h2>
     <p>The .table-hover class enables a hover state on table rows:</p>
     <table class="table table-hover">
         <thead>
         <tr>
             <th>Title</th>
-            <th>Content</th>
+            <th>Description</th>
             <th>Published</th>
-            <th>Author</th>
-            <th>Show</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th>Price</th>
+            <th>Restore</th>
+            <th class="text-warning">Permanent Delete</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($news as $article)
+        @foreach($trashed_cars as $car)
             <tr>
-                <td>{{$article->newsTitle}}</td>
-                <td>{{$article->newsContent}}</td>
+                <td>{{$car->title}}</td>
+                <td>{{$car->description}}</td>
                 <td>
-                    @if($article->newsPublished)
+                    @if($car->published)
                         Yes
                     @else
                         No
                     @endif
                 </td>
-                <td>{{$article->newsAuthor}}</td>
-                <td><a href="show-news/{{$article->id}}">Show</a></td>
-                <td><a href="edit-news/{{$article->id}}">Edit</a></td>
-                <td><a href="delete-news/{{$article->id}}">Delete</a></td>
+                <td>{{$car->price}}</td>
+                <td><a href="restore-car/{{$car->id}}">Restore</a></td>
+                <td><a href="delete-permanent-car/{{$car->id}}" class="text-warning">Delete</a></td>
             </tr>
         @endforeach
 
         </tbody>
     </table>
-    <a href="create-news" class="btn btn-primary">Adding new News!!</a>
-    <a href="trashed-news" class="btn btn-warning">Show trashed</a>
+    <a href="../car-index" class="btn btn-primary">Back to All cars</a>
 </div>
 
 </body>

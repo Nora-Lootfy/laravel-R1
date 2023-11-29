@@ -111,4 +111,6 @@ Route::get('edit-news/{id}', [NewsController::class, 'edit']);
 Route::put('update-news/{id}', [NewsController::class, 'update'])->name('update-news');
 Route::get('show-news/{id}', [NewsController::class, 'show']);
 Route::get('delete-news/{id}', [NewsController::class, 'destroy']);
-
+Route::get('trashed-news', [NewsController::class, 'getTrashed']);
+Route::get('restore-news/{id}', [NewsController::class, 'restore']);
+Route::get('delete-permanent-news/{id}', [NewsController::class, 'destroyPermanently']);
