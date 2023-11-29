@@ -11,7 +11,7 @@
 <body>
 
 <div class="container">
-    <h2>All cars</h2>
+    <h2>Trashed cars</h2>
     <p>The .table-hover class enables a hover state on table rows:</p>
     <table class="table table-hover">
         <thead>
@@ -20,14 +20,13 @@
             <th>Description</th>
             <th>Published</th>
             <th>Price</th>
-            <th>Show</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th>Restore</th>
+            <th class="text-warning">Permanent Delete</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($cars as $car)
-        <tr>
+        @foreach($trashed_cars as $car)
+            <tr>
                 <td>{{$car->title}}</td>
                 <td>{{$car->description}}</td>
                 <td>
@@ -38,17 +37,16 @@
                     @endif
                 </td>
                 <td>{{$car->price}}</td>
-                <td><a href="show-car/{{$car->id}}">Show</a></td>
-                <td><a href="edit-car/{{$car->id}}">Edit</a></td>
-                <td><a href="delete-car/{{$car->id}}">Delete</a></td>
-        </tr>
+                <td><a href="restore-car/{{$car->id}}">Restore</a></td>
+                <td><a href="delete-permanent-car/{{$car->id}}" class="text-warning">Delete</a></td>
+            </tr>
         @endforeach
 
         </tbody>
     </table>
-    <a href="add-car" class="btn btn-primary">Adding new Car!!</a>
-    <a href="trashed-car" class="btn btn-warning">Show trashed</a>
+
 </div>
 
 </body>
 </html>
+

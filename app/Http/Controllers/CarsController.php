@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\Car;
 class CarsController extends Controller
@@ -36,14 +37,23 @@ class CarsController extends Controller
      */
     public function store(Request $request)
     {
-        $car = new Car();
+//        $car = new Car();
+//
+//        $car->title = $request->title;
+//        $car->description = $request->description;
+//        $car->published = (isset($request->published))? true: false;
+//        $car->price = $request->price;
+//        $car->save();
 
-        $car->title = $request->title;
-        $car->description = $request->description;
-        $car->published = (isset($request->published))? true: false;
-        $car->price = $request->price;
+        $request->validate([
+            'title'         => 'required|string|max:10',
+            'description'   => 'required|string|max:200'
+        ]);
 
-        $car->save();
+        $data = $request->only($this->columns);
+        $data['published'] = isset($data['published'])? true:false;
+
+        Car::create($data);
 
         return redirect('car-index');
     }
@@ -86,9 +96,28 @@ class CarsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id) :RedirectResponse
     {
         Car::where('id', $id)->delete();
         return redirect('car-index');
     }
+
+    public function getTrashed()
+    {
+        $trashed_cars = Car::onlyTrashed()->get();
+        return view('trashed', compact('trashed_cars'));
+    }
+
+    public function restore(string $id) :RedirectResponse
+    {
+        Car::where('id', $id)->restore();
+        return redirect('car-index');
+    }
+
+    public function destroyPermanently(string $id) :RedirectResponse
+    {
+        Car::where('id', $id)->forceDelete();;
+        return redirect('car-index');
+    }
+
 }

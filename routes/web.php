@@ -100,7 +100,9 @@ Route::get('edit-car/{id}', [CarsController::class, 'edit']);
 Route::put('update-car/{id}', [CarsController::class, 'update'])->name('update-car');
 Route::get('show-car/{id}', [CarsController::class, 'show']);
 Route::get('delete-car/{id}', [CarsController::class, 'destroy']);
-
+Route::get('trashed-car', [CarsController::class, 'getTrashed']);
+Route::get('restore-car/{id}', [CarsController::class, 'restore']);
+Route::get('delete-permanent-car/{id}', [CarsController::class, 'destroyPermanently']);
 
 Route::get('news-index', [NewsController::class, 'index']);
 Route::get('create-news', [NewsController::class, 'create']);
