@@ -105,9 +105,16 @@ class CarsController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $data = $request->validate([
+            'title'         => 'required|string',
+            'description'   => 'required|string|max:500',
+            'price'         => 'required|numeric|between:0,9999999999.99',
+        ]);
 
-        $data = $request->only($this->columns);
-        $data['published'] = isset($data['published'])? true:false;
+        $data['image'] = is_null($request->image)?
+            $request['oldImage'] : $this->uploadFile(file: $request->image, path: 'assets\images');
+
+        $data['published'] = isset($request['published']);
 
         Car::where('id', $id)->update($data);
 

@@ -12,21 +12,41 @@
 
 <div class="container">
     <h2>Edit Car</h2>
-    <form action="{{route('update-car', $car->id)}}" method="post" id="form">
+    <form action="{{route('update-car', $car->id)}}" method="post" id="form" enctype="multipart/form-data">
         @csrf
         @method('put')
 
         <div class="form-group">
             <label for="title">Title:</label>
             <input type="text" class="form-control" id="title" placeholder="Enter title" name="title" value="{{$car->title}}">
+            @error('title')
+            <div class="alert alert-danger">
+                <strong>Error!!</strong> {{$message}}
+            </div>
+            @enderror
         </div>
         <div class="form-group">
             <label for="price">Price:</label>
             <input type="number" class="form-control" id="price" placeholder="Enter Price" name="price" value="{{$car->price}}">
+            @error('price')
+            <div class="alert alert-danger">
+                <strong>Error!!</strong> {{$message}}
+            </div>
+            @enderror
         </div>
         <div class="form-group">
             <label for="description">Description:</label>
             <textarea class="form-control" rows="5" id="description" name="description">{{$car->description}}</textarea>
+            @error('description')
+            <div class="alert alert-danger">
+                <strong>Error!!</strong> {{$message}}
+            </div>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label for="image">Image:</label>
+            <input type="file" class="form-control" id="image" name="image">
+            <input type="hidden" name="oldImage" value="{{$car->image}}">
         </div>
         <div class="checkbox">
             <label><input type="checkbox" name="published"  @checked($car->published)> Published</label>
