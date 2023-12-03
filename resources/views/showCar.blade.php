@@ -15,12 +15,15 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <p class="text-light bg-secondary" style="padding: 25px; border-radius:25px;">Car Details:<br>{{$car->description}}</p>
+            <img src="../assets/images/{{$car->image}}" alt="" width="75%">
         </div>
         <div class="col-md-6">
             <div class="row">
+                <p class="text-light bg-secondary" style="padding: 25px; border-radius:25px;">Car Details:<br>{{$car->description}}</p>
+            </div>
+            <div class="row">
                 <p class="text-light bg-primary" style="padding: 20px; border-radius:25px; text-align: center">
-                    {{$car->price}}$
+                {{$car->price}}$
                 </p>
             </div>
             <div class="row">
@@ -29,9 +32,27 @@
                 @else
                     <p class="text-light bg-secondary" style="padding: 20px; border-radius:25px; text-align: center">Car is not Published</p>
                 @endif
-
             </div>
         </div>
+
+{{--        <div class="col-md-6">--}}
+{{--            <p class="text-light bg-secondary" style="padding: 25px; border-radius:25px;">Car Details:<br>{{$car->description}}</p>--}}
+{{--        </div>--}}
+{{--        <div class="col-md-6">--}}
+{{--            <div class="row">--}}
+{{--                <p class="text-light bg-primary" style="padding: 20px; border-radius:25px; text-align: center">--}}
+{{--                    {{$car->price}}$--}}
+{{--                </p>--}}
+{{--            </div>--}}
+{{--            <div class="row">--}}
+{{--                @if($car->published)--}}
+{{--                    <p class="text-light bg-secondary" style="padding: 20px; border-radius:25px; text-align: center">Car is Published</p>--}}
+{{--                @else--}}
+{{--                    <p class="text-light bg-secondary" style="padding: 20px; border-radius:25px; text-align: center">Car is not Published</p>--}}
+{{--                @endif--}}
+
+{{--            </div>--}}
+{{--        </div>--}}
     </div>
     <a href="../car-index" class="btn btn-primary">Back to All cars</a>
 

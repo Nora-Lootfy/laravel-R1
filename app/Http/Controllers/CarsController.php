@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\Car;
+use App\Traits\Common;
 class CarsController extends Controller
 {
+    use Common;
     private $columns = [
         'title',
         'description',
@@ -45,13 +47,33 @@ class CarsController extends Controller
 //        $car->price = $request->price;
 //        $car->save();
 
-        $request->validate([
-            'title'         => 'required|string|max:10',
-            'description'   => 'required|string|max:200'
-        ]);
+//        $request->validate([
+//            'title'         => 'required|string|max:10',
+//            'description'   => 'required|string|max:200'
+//        ]);
+//
+//        $data = $request->only($this->columns);
+//        $data['published'] = isset($data['published'])? true:false;
+//
+//        Car::create($data);
 
-        $data = $request->only($this->columns);
-        $data['published'] = isset($data['published'])? true:false;
+        $messages = [
+            'title.required'        => 'Title is required',
+            'description.required'  => 'You have to provide description',
+            'price.required'        => 'Price is required'
+        ];
+
+        $data = $request->validate([
+            'title'         => 'required|string',
+            'description'   => 'required|string|max:500',
+            'price'         => 'required|numeric|between:0,9999999999.99',
+            'image'         => 'required|mimes:png,jpg,jpeg|max:2048'
+        ], $messages);
+
+        $fileName = $this->uploadFile(file: $request->image, path: 'assets\images');
+        $data['image'] = $fileName;
+
+        $data['published'] = isset($request['published']);
 
         Car::create($data);
 
