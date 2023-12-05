@@ -111,8 +111,14 @@ class CarsController extends Controller
             'price'         => 'required|numeric|between:0,9999999999.99',
         ]);
 
-        $data['image'] = is_null($request->image)?
-            $request['oldImage'] : $this->uploadFile(file: $request->image, path: 'assets\images');
+        if(is_null($request->image)) {
+            $data['image'] = $request['oldImage'];
+        } else {
+           $request->validate([
+               'image'         => 'required|mimes:png,jpg,jpeg|max:2048'
+           ]);
+            $data['image'] = $this->uploadFile(file: $request->image, path: 'assets\images');
+        }
 
         $data['published'] = isset($request['published']);
 

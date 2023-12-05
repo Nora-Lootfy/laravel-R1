@@ -47,6 +47,11 @@
             <label for="image">Image:</label>
             <input type="file" class="form-control" id="image" name="image">
             <input type="hidden" name="oldImage" value="{{$car->image}}">
+            @error('image')
+            <div class="alert alert-danger">
+                <strong>Error!!</strong> {{$message}}
+            </div>
+            @enderror
         </div>
         <div class="checkbox">
             <label><input type="checkbox" name="published"  @checked($car->published)> Published</label>
