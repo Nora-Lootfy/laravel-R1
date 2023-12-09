@@ -5,6 +5,7 @@ use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\CarsController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PlacesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,7 +90,9 @@ Route::post('receive', function () {
 Route::get('test', [ExampleController::class, 'test']);
 Route::get('show-upload', [ExampleController::class, 'show_upload']);
 Route::post('upload', [ExampleController::class, 'upload'])->name('upload');
-
+//Route::get('place', [ExampleController::class, 'place']);
+//Route::get('blog', [ExampleController::class, 'blog']);
+//Route::get('blog2', [ExampleController::class, 'blog2']);
 //Route::get('add-car', [CarController::class, 'add_car']);
 //Route::post('car-added', [CarController::class, 'added'])->name('car-added');
 //
@@ -116,3 +119,8 @@ Route::get('delete-news/{id}', [NewsController::class, 'destroy']);
 Route::get('trashed-news', [NewsController::class, 'getTrashed']);
 Route::get('restore-news/{id}', [NewsController::class, 'restore']);
 Route::get('delete-permanent-news/{id}', [NewsController::class, 'destroyPermanently']);
+
+
+Route::get('place-index',[PlacesController::class, 'index']);
+Route::get('create-place',[PlacesController::class, 'create']);
+Route::post('store-place',[PlacesController::class, 'store'])->name('storePlace');

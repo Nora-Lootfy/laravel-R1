@@ -27,6 +27,18 @@ class ExampleController extends Controller
 
         return $fileName;
     }
+
+    public function place() {
+        return view('place');
+    }
+
+    public function blog() {
+        return view('blog');
+    }
+
+    public function blog2() {
+        return view('blog2');
+    }
 }
 
 // database, view, routes
