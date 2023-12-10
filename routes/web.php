@@ -124,3 +124,8 @@ Route::get('delete-permanent-news/{id}', [NewsController::class, 'destroyPermane
 Route::get('place-index',[PlacesController::class, 'index']);
 Route::get('create-place',[PlacesController::class, 'create']);
 Route::post('store-place',[PlacesController::class, 'store'])->name('storePlace');
+Route::get('show-place/{id}', [PlacesController::class, 'show'])->name('showPlace');
+Route::get('delete-place/{id}', [PlacesController::class, 'destroy'])->name('deletePlace');
+Route::get('trashed-places', [PlacesController::class, 'getTrashed']);
+Route::get('restore-place/{id}', [PlacesController::class, 'restore'])->name('restorePlace');
+Route::get('delete-permanent-place/{id}', [PlacesController::class, 'destroyPermanently'])->name('deletePlacePermanently');;

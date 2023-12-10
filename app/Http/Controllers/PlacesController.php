@@ -16,8 +16,8 @@ class PlacesController extends Controller
      */
     public function index(): View
     {
-        $places = Place::latest()->limit(6)->get();
-        return view('placeLandingPage', compact('places'));
+        $places = Place::latest()->get();
+        return view('places', compact('places'));
     }
 
     /**
@@ -54,7 +54,9 @@ class PlacesController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $place = Place::findORFail($id);
+
+        return view('showPlace', compact('place'));
     }
 
     /**
@@ -78,6 +80,25 @@ class PlacesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Place::where('id', $id)->delete();
+        return redirect('place-index');
+    }
+
+    public function getTrashed()
+    {
+        $trashedPlaces = Place::onlyTrashed()->get();
+        return view('trashedPlaces', compact('trashedPlaces'));
+    }
+
+    public function restore(string $id) :RedirectResponse
+    {
+        Place::where('id', $id)->restore();
+        return redirect('place-index');
+    }
+
+    public function destroyPermanently(string $id) :RedirectResponse
+    {
+        Place::where('id', $id)->forceDelete();;
+        return redirect('place-index');
     }
 }
