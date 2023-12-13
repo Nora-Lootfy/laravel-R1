@@ -21,7 +21,9 @@ class CarFactory extends Factory
             'description'   => fake()->text(),
             'published'     => 1,
             'price'         => fake()->randomDigit(),
-            'image'         => fake()->randomElement(['1702155460.jpg', '1702155530.jpg', '1702155555.jpg', '1702156047.jpg', '1702156168.jpg', '1702156160.jpg', '1702156151.jpg'])
+            'image'         => fake()->randomElement(['1702155460.jpg', '1702155530.jpg', '1702155555.jpg', '1702156047.jpg', '1702156168.jpg', '1702156160.jpg', '1702156151.jpg']),
+            'category_id'   => fake()->numberBetween(1, 10)
         ];
     }
 }
+

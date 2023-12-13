@@ -43,16 +43,34 @@
             </div>
             @enderror
         </div>
+
+        <div class="form-group">
+            <label for="category">Category:</label>
+            <select id="category" name="category_id">
+                @foreach($categories as $category)
+                    <option value="{{$category->id}}" @selected($category->id == $car->category_id)>{{$category->category_name}}</option>
+                @endforeach
+            </select>
+            @error('category_id')
+            <div class="alert alert-danger">
+                <strong>Error!!</strong> {{$message}}
+            </div>
+            @enderror
+        </div>
+
         <div class="form-group">
             <label for="image">Image:</label>
             <input type="file" class="form-control" id="image" name="image">
             <input type="hidden" name="oldImage" value="{{$car->image}}">
+            <br>
+            <img src="{{asset('assets/images/'.$car->image)}}" alt="" width="200">
             @error('image')
             <div class="alert alert-danger">
                 <strong>Error!!</strong> {{$message}}
             </div>
             @enderror
         </div>
+        <hr>
         <div class="checkbox">
             <label><input type="checkbox" name="published"  @checked($car->published)> Published</label>
         </div>

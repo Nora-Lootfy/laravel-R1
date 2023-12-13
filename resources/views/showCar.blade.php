@@ -33,6 +33,11 @@
                     <p class="text-light bg-secondary" style="padding: 20px; border-radius:25px; text-align: center">Car is not Published</p>
                 @endif
             </div>
+            <div class="row">
+                <p class="text-light bg-secondary" style="padding: 20px; border-radius:25px; text-align: center">
+                    Category: {{$car->category->category_name}}
+                </p>
+            </div>
         </div>
 
 {{--        <div class="col-md-6">--}}

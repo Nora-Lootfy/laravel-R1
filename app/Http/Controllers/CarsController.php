@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\Car;
+use App\Models\Category;
 use App\Traits\Common;
 class CarsController extends Controller
 {
@@ -30,8 +31,8 @@ class CarsController extends Controller
      */
     public function create()
     {
-        //
-        return view('addCar');
+        $categories = Category::select('id', 'category_name')->get();
+        return view('addCar', compact('categories'));
     }
 
     /**
@@ -67,7 +68,8 @@ class CarsController extends Controller
             'title'         => 'required|string',
             'description'   => 'required|string|max:500',
             'price'         => 'required|numeric|between:0,9999999999.99',
-            'image'         => 'required|mimes:png,jpg,jpeg|max:2048'
+            'image'         => 'required|mimes:png,jpg,jpeg|max:2048',
+            'category_id'   => 'required'
         ], $messages);
 
         $fileName = $this->uploadFile(file: $request->image, path: 'assets\images');
@@ -96,8 +98,9 @@ class CarsController extends Controller
     public function edit(string $id)
     {
         $car = Car::findORFail($id);
+        $categories = Category::select('id', 'category_name')->get();
 
-        return view('editCar', compact('car'));
+        return view('editCar', compact(['car', 'categories']));
     }
 
     /**
@@ -109,14 +112,13 @@ class CarsController extends Controller
             'title'         => 'required|string',
             'description'   => 'required|string|max:500',
             'price'         => 'required|numeric|between:0,9999999999.99',
+            'image'         => 'sometimes|mimes:png,jpg,jpeg|max:2048',
+            'category_id'   => 'required'
         ]);
 
         if(is_null($request->image)) {
             $data['image'] = $request['oldImage'];
         } else {
-           $request->validate([
-               'image'         => 'required|mimes:png,jpg,jpeg|max:2048'
-           ]);
             $data['image'] = $this->uploadFile(file: $request->image, path: 'assets\images');
         }
 
