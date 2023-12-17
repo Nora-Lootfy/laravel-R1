@@ -128,4 +128,8 @@ Route::get('show-place/{id}', [PlacesController::class, 'show'])->name('showPlac
 Route::get('delete-place/{id}', [PlacesController::class, 'destroy'])->name('deletePlace');
 Route::get('trashed-places', [PlacesController::class, 'getTrashed']);
 Route::get('restore-place/{id}', [PlacesController::class, 'restore'])->name('restorePlace');
-Route::get('delete-permanent-place/{id}', [PlacesController::class, 'destroyPermanently'])->name('deletePlacePermanently');;
+Route::get('delete-permanent-place/{id}', [PlacesController::class, 'destroyPermanently'])->name('deletePlacePermanently');
+
+Auth::routes(['verify'=>true]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
