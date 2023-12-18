@@ -6,6 +6,7 @@ use App\Http\Controllers\CarController;
 use App\Http\Controllers\CarsController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PlacesController;
+use App\Http\Controllers\ContactUSController;
 
 /*
 |--------------------------------------------------------------------------
@@ -133,3 +134,7 @@ Route::get('delete-permanent-place/{id}', [PlacesController::class, 'destroyPerm
 Auth::routes(['verify'=>true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('create-contact-us',[ContactUSController::class, 'create']);
+Route::post('send-message',[ContactUSController::class, 'send'])->name('messageSent');
+
