@@ -39,6 +39,15 @@ class ExampleController extends Controller
     public function blog2() {
         return view('blog2');
     }
+
+    public function createSession() {
+//        session_start();
+        session()->put('test', 'First Laravel session');
+        session()->forget('test');
+        $data = session('test');
+//        $data = $_SESSION['test'];
+        return view('session', compact('data'));
+    }
 }
 
 // database, view, routes

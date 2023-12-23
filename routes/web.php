@@ -91,6 +91,7 @@ Route::post('receive', function () {
 Route::get('test', [ExampleController::class, 'test']);
 Route::get('show-upload', [ExampleController::class, 'show_upload']);
 Route::post('upload', [ExampleController::class, 'upload'])->name('upload');
+Route::get('create-session', [ExampleController::class, 'createSession']);
 //Route::get('place', [ExampleController::class, 'place']);
 //Route::get('blog', [ExampleController::class, 'blog']);
 //Route::get('blog2', [ExampleController::class, 'blog2']);
@@ -101,7 +102,7 @@ Route::post('upload', [ExampleController::class, 'upload'])->name('upload');
 
 Route::get('add-car', [CarsController::class, 'create']);
 Route::post('car-added', [CarsController::class, 'store'])->name('car-added');
-Route::get('car-index', [CarsController::class, 'index']);
+Route::get('car-index', [CarsController::class, 'index'])->middleware('verified');
 Route::get('edit-car/{id}', [CarsController::class, 'edit']);
 Route::put('update-car/{id}', [CarsController::class, 'update'])->name('update-car');
 Route::get('show-car/{id}', [CarsController::class, 'show']);
@@ -132,7 +133,6 @@ Route::get('restore-place/{id}', [PlacesController::class, 'restore'])->name('re
 Route::get('delete-permanent-place/{id}', [PlacesController::class, 'destroyPermanently'])->name('deletePlacePermanently');
 
 Auth::routes(['verify'=>true]);
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('create-contact-us',[ContactUSController::class, 'create']);
