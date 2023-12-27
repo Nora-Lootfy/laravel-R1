@@ -102,7 +102,7 @@ Route::get('create-session', [ExampleController::class, 'createSession']);
 
 Route::get('add-car', [CarsController::class, 'create']);
 Route::post('car-added', [CarsController::class, 'store'])->name('car-added');
-Route::get('car-index', [CarsController::class, 'index'])->middleware('verified');
+Route::get('car-index', [CarsController::class, 'index']);//->middleware('verified');
 Route::get('edit-car/{id}', [CarsController::class, 'edit']);
 Route::put('update-car/{id}', [CarsController::class, 'update'])->name('update-car');
 Route::get('show-car/{id}', [CarsController::class, 'show']);
@@ -135,6 +135,11 @@ Route::get('delete-permanent-place/{id}', [PlacesController::class, 'destroyPerm
 Auth::routes(['verify'=>true]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('create-contact-us',[ContactUSController::class, 'create']);
-Route::post('send-message',[ContactUSController::class, 'send'])->name('messageSent');
+Route::group([
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+], function() {
+    Route::get('create-contact-us',[ContactUSController::class, 'create']);
+    Route::post('send-message',[ContactUSController::class, 'send'])->name('messageSent');
+});
 

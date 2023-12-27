@@ -14,9 +14,8 @@
 <div class="container" style=" width: 50vw; color: #393d42">
 <!--Section: Contact v.2-->
 <section class="mb-4">
-
     <!--Section heading-->
-    <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
+    <h2 class="h1-responsive font-weight-bold text-center my-4">{{__('messages.contactForm')}}</h2>
     <!--Section description-->
     <p class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within
         a matter of hours to help you.</p>
@@ -88,6 +87,11 @@
         </div>
         <!--Grid column-->
 
+    </div>
+
+    <div>
+        <a href="{{ LaravelLocalization::getLocalizedURL('en') }}" class="btn">English</a>
+        <a href="{{ LaravelLocalization::getLocalizedURL('ar') }}" class="btn">Arabic</a>
     </div>
 
 </section>
