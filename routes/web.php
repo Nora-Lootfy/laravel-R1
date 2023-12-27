@@ -100,8 +100,8 @@ Route::get('create-session', [ExampleController::class, 'createSession']);
 //
 //Route::get('car-added', fn() => redirect('add-car'));
 
-Route::get('add-car', [CarsController::class, 'create']);
-Route::post('car-added', [CarsController::class, 'store'])->name('car-added');
+//Route::get('add-car', [CarsController::class, 'create']);
+//Route::post('car-added', [CarsController::class, 'store'])->name('car-added');
 Route::get('car-index', [CarsController::class, 'index']);//->middleware('verified');
 Route::get('edit-car/{id}', [CarsController::class, 'edit']);
 Route::put('update-car/{id}', [CarsController::class, 'update'])->name('update-car');
@@ -141,5 +141,8 @@ Route::group([
 ], function() {
     Route::get('create-contact-us',[ContactUSController::class, 'create']);
     Route::post('send-message',[ContactUSController::class, 'send'])->name('messageSent');
+
+    Route::get('add-car', [CarsController::class, 'create']);
+    Route::post('car-added', [CarsController::class, 'store'])->name('car-added');
 });
 

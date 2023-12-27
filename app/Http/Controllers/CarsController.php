@@ -59,9 +59,15 @@ class CarsController extends Controller
 //        Car::create($data);
 
         $messages = [
-            'title.required'        => 'Title is required',
-            'description.required'  => 'You have to provide description',
-            'price.required'        => 'Price is required'
+            'title.required'        => __('addCar.titleRequiredMsg'),
+            'description.required'  => __('addCar.descriptionRequiredMsg'),
+            'description.max'       => __('addCar.descriptionMaxMsg'),
+            'price.required'        => __('addCar.priceRequiredMsg'),
+            'price.numeric'         => __('addCar.priceNumericMsg'),
+            'image.require'         => __('addCar.imageRequiredMsg'),
+            'image.mimes'           => __('addCar.imageMimesMsg'),
+            'image.max'             => __('addCar.imageSizeMsg'),
+            'category_id.required'  => __('addCar.categoryRequiredMsg'),
         ];
 
         $data = $request->validate([
