@@ -7,6 +7,7 @@ use App\Http\Controllers\CarsController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PlacesController;
 use App\Http\Controllers\ContactUSController;
+use App\Charts\MonthlyUsersChart;
 
 /*
 |--------------------------------------------------------------------------
@@ -145,4 +146,7 @@ Route::group([
     Route::get('add-car', [CarsController::class, 'create']);
     Route::post('car-added', [CarsController::class, 'store'])->name('car-added');
 });
+
+
+Route::get('charts-test', [ExampleController::class, 'index']);
 

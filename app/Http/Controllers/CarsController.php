@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Car;
 use App\Models\Category;
 use App\Traits\Common;
+use Illuminate\Support\Facades\DB;
+
 class CarsController extends Controller
 {
     use Common;
@@ -21,8 +23,8 @@ class CarsController extends Controller
      */
     public function index()
     {
-        $cars = Car::get();
-
+//        $cars = Car::get();
+        $cars = DB::table('cars')->get();
         return view('cars', compact('cars'));
     }
 
@@ -31,6 +33,7 @@ class CarsController extends Controller
      */
     public function create()
     {
+//        $categories = DB
         $categories = Category::select('id', 'category_name')->get();
         return view('addCar', compact('categories'));
     }

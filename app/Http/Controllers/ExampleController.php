@@ -4,11 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Traits\Common;
+use App\Charts\MonthlyUsersChart;
 
 class ExampleController extends Controller
 {
     //
     use Common;
+
+    public function index(MonthlyUsersChart $chart)
+    {
+        return view('charts', ['chart' => $chart->build()]);
+    }
+
     public function test() {
         return view('login');
     }
