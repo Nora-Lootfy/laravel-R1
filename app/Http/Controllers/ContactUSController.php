@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactUS;
+use App\Jobs\SendEmailJob;
 
 
 class ContactUSController extends Controller
@@ -23,6 +24,7 @@ class ContactUSController extends Controller
         ]);
 
         Mail::to(env('MAIL_FROM_ADDRESS'))->send(new ContactUS($data));
+        dispatch(new SendEmailJob($data));
         return 'message sent, thanks';
     }
 
