@@ -150,3 +150,8 @@ Route::group([
 
 Route::get('charts-test', [ExampleController::class, 'index']);
 
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
